@@ -1,7 +1,11 @@
 name: remote ssh command
-on: [push]
+#on: [push]
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - stage
 jobs:
-
   build:
     name: Build
     runs-on: ubuntu-latest
@@ -13,4 +17,4 @@ jobs:
         username: ${{ secrets.USERNAME }}
         key: ${{ secrets.KEY }}
         port: "22"
-        script: echo "ii" > /tmp/oi.txt
+        script: cd /srv/www/back-getxml.stage && git checkout stage && git pull origin stage && docker rm imobiliarianorte-getxml.vm-getxml-stage -f && docker image rm imobiliaria-norte/getxml-stage && docker-compose up -f stage.yml --detach
