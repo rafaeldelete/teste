@@ -13,6 +13,4 @@ jobs:
         username: ${{ secrets.USERNAME }}
         password: ${{ secrets.PASSWORD }}
         port: "22"
-        script: |
-        echo 'oi' > /tmp/oi.txt
-        whoami
+        script: echo "ii" > /tmp/oi.txt
